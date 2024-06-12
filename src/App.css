@@ -1,0 +1,7 @@
+.expense-tracker {
+  padding: 20px 40px;
+}
+
+input, select {
+  max-width: 500px;
+}

@@ -14,17 +14,20 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-const ExpenseTracker = () => {
-  const {register, handleSubmit, formState:{errors}} = useForm<FormData>({resolver: zodResolver(schema)});
+interface Props {
+  onSubmit: (data: FormData) => void;
+}
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data)
-  }
+const ExpenseTracker = ({onSubmit}:Props) => {
+  const {register, reset, handleSubmit, formState:{errors}} = useForm<FormData>({resolver: zodResolver(schema)});
 
   return (
     <>
       <div className='container-fluid expense-tracker'>
-        <form action="submit" onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit((data) => {
+          onSubmit(data);
+          reset();
+        })}>
         <div className='row g-3'>
         <div className='col-12'>
           <label htmlFor="description" className='form-label'>Description</label>

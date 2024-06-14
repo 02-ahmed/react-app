@@ -30,7 +30,7 @@ function App() {
       <div className="mb-3">
         <ExpenseFilter onSelectCategory={(category) => setSelectedCategory(category)}/>
       </div>
-      <ExpenseList expenses={visibleExpenses } onDelete={(id) => setExpenses(expenses.filter(e => e.id !== id))}/>
+      <ExpenseList expenses={visibleExpenses } onDelete={(id) => setExpenses(expenses.filter(expense => expense.id !== id))}/>
     </>
   )
 }
